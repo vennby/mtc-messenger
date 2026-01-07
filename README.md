@@ -1,4 +1,4 @@
-## MTCMail
+## MTC Messenger
 
 A simple Flask web application to send emails using Gmail SMTP.
 
