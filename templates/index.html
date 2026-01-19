@@ -1,12 +1,76 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTC • Messenger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Send an email to everyone here!</h1>
-    <button><a href="{{ url_for('send_email') }}">Mail!</a></button>
+
+<form class="mail-container" method="POST" action="{{ url_for('send_email') }}" enctype="multipart/form-data">
+
+    <div class="mail-header">
+        <span>New Message</span>
+        <button type="submit" class="send-btn">Send</button>
+    </div>
+
+    <div class="field">
+        <label>To</label>
+        <input type="text" name="to" placeholder="Type emails, press Enter">
+        <select onchange="this.previousElementSibling.value += this.value + ','">
+            <option value="">+ Add Group</option>
+            {% for group, emails in groups.items() %}
+            <option value="{{ ','.join(emails) }}">{{ group }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="field">
+        <label>CC</label>
+        <input type="text" name="cc">
+    </div>
+
+    <div class="field">
+        <label>BCC</label>
+        <input type="text" name="bcc">
+    </div>
+
+    <div class="field">
+        <input class="subject" type="text" name="subject" placeholder="Subject">
+    </div>
+
+    <div class="toolbar">
+        <button type="button" onclick="format('bold')"><b>B</b></button>
+        <button type="button" onclick="format('italic')"><i>I</i></button>
+        <button type="button" onclick="format('insertUnorderedList')">• List</button>
+        <button type="button" onclick="format('createLink')">🔗</button>
+        <label class="attach">
+            📎
+            <input type="file" name="attachments" multiple hidden>
+        </label>
+    </div>
+
+    <div class="editor" contenteditable="true"></div>
+    <textarea name="body" hidden></textarea>
+
+</form>
+
+<script>
+const editor = document.querySelector('.editor');
+const textarea = document.querySelector('textarea');
+
+function format(cmd) {
+    if (cmd === 'createLink') {
+        const url = prompt("Enter URL:");
+        document.execCommand(cmd, false, url);
+    } else {
+        document.execCommand(cmd, false, null);
+    }
+}
+
+document.querySelector('form').addEventListener('submit', () => {
+    textarea.value = editor.innerHTML;
+});
+</script>
+
 </body>
 </html>

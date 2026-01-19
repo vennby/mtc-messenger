@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f1f3f4;
+}
+
+.mail-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.mail-header {
+    padding: 12px 16px;
+    background: #f6f8fc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.send-btn {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 16px;
+}
+
+.field label {
+    width: 50px;
+    color: #5f6368;
+}
+
+.field input, .field select {
+    border: none;
+    flex: 1;
+    font-size: 15px;
+    outline: none;
+}
+
+.subject {
+    width: 100%;
+    font-size: 16px;
+}
+
+.toolbar {
+    padding: 8px 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.toolbar button {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.editor {
+    min-height: 300px;
+    padding: 16px;
+    outline: none;
+}
+
+.attach {
+    cursor: pointer;
+}
